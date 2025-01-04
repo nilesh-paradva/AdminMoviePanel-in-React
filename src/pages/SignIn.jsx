@@ -23,7 +23,6 @@ const SignIn = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(SignInThunk(signIn));
-        console.log("signIn", signIn);
     }
 
     useEffect(() => {

@@ -30,25 +30,33 @@ const AddItems = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(MovieAddThunk(formInput));
-        console.log("formInput", formInput);
     }
 
     const handleImage = (e) => {
         const file = e.target.files[0];
+        if (!file || file.size > 2097152) return alert('File size must be less than 2MB');
+
         const reader = new FileReader();
+        reader.onload = ({ target }) => {
+            const img = new Image();
+            img.src = target.result;
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                const ratio = Math.min(800 / img.width, 600 / img.height, 1);
 
-        reader.onloadend = () => {
-            setFormInput((prev) => ({
-                ...prev,
-                coverImage: reader.result,
-            }));
+                canvas.width = img.width * ratio;
+                canvas.height = img.height * ratio;
+
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                setFormInput((prev) => ({
+                    ...prev,
+                    coverImage: canvas.toDataURL('image/jpeg', 0.8),
+                }));
+            };
         };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        }
+        reader.readAsDataURL(file);
     };
-
 
     useEffect(() => {
         if (isCreated) {
@@ -57,7 +65,7 @@ const AddItems = () => {
     }, [isCreated])
 
     return (
-        <section className="bg-[#131720] flex justify-center  !h-[calc(100vh-8rem)] sm:h-[calc(100vh-8rem)]  items-center bg-cover rounded-lg overflow-y-scroll">
+        <section className="bg-[#131720] flex justify-center  !h-[calc(100vh-8rem)] sm:h-[calc(100vh-8rem)]  items-center bg-cover rounded-lg overflow-y-scroll scroll">
             <Container>
                 <Row className="items-center !mt-[50rem] sm:!mt-[50rem] !mb-[3rem]">
                     <form onSubmit={handleSubmit}>
@@ -66,13 +74,13 @@ const AddItems = () => {
                                 <div className="w-full">
                                     <label htmlFor="file-upload" className="block mb-2 text-white">Upload Cover</label>
                                     <div className="relative w-full">
-                                        <input type="file" id="file-upload" className="hidden" onChange={handleImage}/>
+                                        <input type="file" id="file-upload" className="hidden" onChange={handleImage} />
                                         <label htmlFor="file-upload" className="cursor-pointer flex h-[320px] w-full items-center justify-center py-2 border-2 border-dashed border-gray-500 rounded-lg bg-[#151f30] text-white hover:border-blue-400 hover:bg-[#1e293b] focus:outline-none focus:ring-2 focus:ring-blue-500">
                                             <span className="mr-2 block">📁</span> Upload Cover
                                         </label>
                                     </div>
                                     <p className="mt-2 text-sm text-gray-400 text-center">
-                                        PNG, JPG, GIF up to 5MB
+                                        PNG, JPG, GIF up to 1MB
                                     </p>
                                 </div>
                             </Col>
@@ -118,18 +126,6 @@ const AddItems = () => {
                             <div className="mb-4">
                                 <label htmlFor="genre" className="block mb-2 text-white">Genre</label>
                                 <input type="text" id="genre" name="genre" value={formInput.genre} className="w-full p-2 rounded bg-[#151f30] text-white placeholder-[#b1a6a6] focus:border-blue-500 focus:outline-none" placeholder="Enter genre" onChange={handleChange} />
-                            </div>
-                            <div className="mb-4">
-                                <label htmlFor="file-upload" className="block mb-2 text-white">Upload Photo</label>
-                                <div className="relative w-full">
-                                    <input type="file" id="file-upload" className="hidden" />
-                                    <label htmlFor="file-upload" className="cursor-pointer flex items-center justify-center w-full py-2 border-2 border-dashed border-gray-500 rounded-lg bg-[#151f30] text-white hover:border-blue-400 hover:bg-[#1e293b] focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                        <span className="mr-2">📁</span> Choose a file or drag it here
-                                    </label>
-                                </div>
-                                <p className="mt-2 text-sm text-gray-400">
-                                    PNG, JPG, GIF up to 5MB
-                                </p>
                             </div>
                             <div className="mb-4">
                                 <label htmlFor="itemType" className="block mb-2 text-white">Item Type</label>

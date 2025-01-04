@@ -12,7 +12,6 @@ const EditItem = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {id} = useParams();
-    console.log("single id", id);
     
     const [formInput, setFormInput] = useState({
         title: "",
@@ -34,7 +33,6 @@ const EditItem = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(UpdateItemsThunk(formInput));
-        console.log("formInput", formInput);
     }
 
     useEffect(() => {

@@ -23,7 +23,7 @@ const Catalog = () => {
     }, []);
 
     return (
-        <section className="catalog !h-[calc(100vh-8rem)] sm:h-[calc(100vh-8rem)] overflow-y-scroll">
+        <section className="catalog !h-[calc(100vh-8rem)] sm:h-[calc(100vh-8rem)] overflow-y-scroll scroll">
             <Container>
                 <Row className="gap-y-7 !mb-20">
                     {movies.map((item) => (
@@ -32,15 +32,15 @@ const Catalog = () => {
                                 <div className=" h-[40%] overflow-hidden rounded-lg">
                                     <img src={item.coverImage} alt={item.title} className=" object-cover rounded-lg" />
                                 </div>
-                                <div className="">
+                                <div>
                                     <h3 className="text-lg font-semibold mb-2 hover:text-[#3498db] transition-colors">{item.title}</h3>
-                                    <p className="text-sm text-gray-400 mb-2 hover:text-gray-300 transition-colors">{item.description}</p>
-                                    <p className="text-sm mb-2 hover:text-[#3498db] transition-colors"><strong>Category:</strong> {item.itemType}</p>
-                                    <p className="text-sm mb-2 hover:text-[#3498db] transition-colors"><strong>Release Year:</strong> {item.releaseYear}</p>
-                                    <p className="text-sm mb-2 hover:text-[#3498db] transition-colors"><strong>Genre:</strong> {item.genre}</p>
-                                    <p className="text-sm mb-2 hover:text-[#3498db] transition-colors"><strong>Country:</strong> {item.country}</p>
+                                    <p className="text-sm text-gray-400 hover:text-gray-300 transition-colors mb-3">{item.description}</p>
+                                    <p className="text-sm mb-2 hover:text-[#3498db] transition-colors flex items-center justify-between"><strong>Category:</strong> {item.itemType}</p>
+                                    <p className="text-sm mb-2 hover:text-[#3498db] transition-colors flex items-center justify-between"><strong>Release Year:</strong> {item.releaseYear}</p>
+                                    <p className="text-sm mb-2 hover:text-[#3498db] transition-colors flex items-center justify-between"><strong>Genre:</strong> {item.genre}</p>
+                                    <p className="text-sm mb-2 hover:text-[#3498db] transition-colors flex items-center justify-between"><strong>Country:</strong> {item.country}</p>
                                 </div>
-                                <div className="flex justify-between">
+                                <div className="flex justify-between mt-3">
                                     <Button aria-label="Edit movie" onClick={() => navigate(`/edititem/${item.id}`)} className="bg-[#435b85] hover:bg-[#354c6b] text-white p-2 rounded-full transition-colors"><EditIcon /></Button>
                                     <Button aria-label="Delete movie" onClick={() => DeleteItem(item.id)} className="bg-[#e74c3c] hover:bg-[#c0392b] text-white p-2 rounded-full transition-colors"><DeleteIcon /></Button>
                                     <Button aria-label="View movie" className="bg-[#2ecc71] hover:bg-[#27ae60] text-white p-2 rounded-full transition-colors" onClick={() => navigate(`/singleviewmovie/${item.id}`)}><RemoveRedEyeIcon /></Button>

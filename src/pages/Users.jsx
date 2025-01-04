@@ -7,9 +7,7 @@ const GetUsers = () => {
 
     const dispatch = useDispatch();
     const { users } = useSelector(state => state.MovieReducer);
-    console.log("users", users.map(user => user.email));
-
-
+    
     useEffect(() => {
         dispatch(LoginUserGateThunk());
     }, []);
@@ -21,7 +19,7 @@ const GetUsers = () => {
                     <Row>
                         {users.map((user) => {
                             return (
-                                <Col lg={4}>
+                                <Col lg={4} key={user.uid}>
                                     <p className="text-white">{user.email}</p>
                                     <p className="text-white">{user.displayName}</p>
                                     <p className="text-white">{user.uid}</p>

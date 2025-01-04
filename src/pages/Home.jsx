@@ -11,10 +11,7 @@ import { getMoviesThunk } from "../services/actions/MovieAct";
 const Home = () => {
 
     const dispatch = useDispatch();
-    const { movies } = useSelector(state => state.MovieReducer);
     const { admin } = useSelector((state) => state.AuthReducer);
-    console.log("all movies", movies);
-    
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -26,7 +23,6 @@ const Home = () => {
             navigate('/signin')
         }
     }, [admin])
-
 
     return(
         <>
