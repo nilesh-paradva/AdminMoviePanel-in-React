@@ -48,7 +48,6 @@ export const LoadingAct = () => {
 }
 
 
-
 // Thunk 
 
 
@@ -104,8 +103,6 @@ export const LoginUserGateThunk = () => async dispatch => {
         console.error("Error getting user:", err);
     }
 }
-
-
 
 //Single Movie
 export const SingleItemThunk = (id) => async dispatch => {

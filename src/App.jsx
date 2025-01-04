@@ -10,6 +10,7 @@ import Catalog from './pages/Catalog';
 import EditItem from './pages/Edititem';
 import SingleMovie from './pages/SingleMovieView';
 import GetUsers from './pages/Users';
+// import EditProfile from './pages/EditProfile';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="catalog" element={<Catalog />} />
             <Route path='edititem/:id' element={<EditItem />} />
             <Route path="singleviewmovie/:id" element={<SingleMovie />} />
+            {/* <Route path="editprofile/:id" element={<EditProfile />} /> */}
             <Route path="users" element={<GetUsers />} />
           </Route>
         </Routes>

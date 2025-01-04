@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { auth, db, provider } from "../../../FireBase";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore";
 
 const SignInAct = (data) => {
     return {
@@ -39,6 +39,21 @@ const LoadingAct = () => {
         type: "LOADING",
     };
 }
+
+// const SingleUserAct = (data) => {
+//     return {
+//         type: "GET_ADMIN_SUCCESS",
+//         payload: data
+//     }
+// }
+
+// const UpdateProfileAct = (data) => {
+//     return {
+//         type: "UPDATE_PROFILE_SUCCESS",
+//         payload: data
+//     }
+// }
+
 
 
 //Thunk
@@ -135,3 +150,30 @@ export const HomeNavigateThunk = () => async dispatch => {
         console.error("Error get recipes:", err);
     }
 }
+
+// update Profile
+
+//Single User
+// export const SingleUserThunk = (uid) => async (dispatch) => {
+//     try {
+//         const docRef = doc(db, "admins", uid);
+//         const docSnap = await getDoc(docRef);
+//         if (docSnap.exists()) {
+//             dispatch(SingleUserAct(docSnap.data()));
+//         }
+//     } catch (error) {
+//         console.error("Error fetching user: ", error);
+//     }
+// };
+
+
+// export const UpdateProfileThunk = (data) => async dispatch => {
+//     // dispatch(LoadingAct());
+//     try {
+//         await setDoc(doc(db, "admins", data.uid), data);
+//         dispatch(UpdateProfileAct(data));
+//         console.log("admin updated successfully.");
+//     } catch (err) {
+//         console.error("Error updating admin:", err);
+//     }
+// }

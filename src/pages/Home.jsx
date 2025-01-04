@@ -12,6 +12,7 @@ const Home = () => {
 
     const dispatch = useDispatch();
     const { admin } = useSelector((state) => state.AuthReducer);
+
     const navigate = useNavigate();
     
     useEffect(() => {

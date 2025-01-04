@@ -7,18 +7,20 @@ import CommentIcon from '@mui/icons-material/Comment';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import PagesIcon from '@mui/icons-material/Pages';
+import EditIcon from '@mui/icons-material/Edit';
 import userImage from "../../assets/images/user.png";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/16/solid";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AdminLogOutThink } from "../../services/actions/AuthAction";
 import { SideBarAct } from "../../services/actions/MovieAct";
 
 const Sidebar = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { admin } = useSelector(state => state.AuthReducer);
-    
+
     const DeleteAdmin = () => {
         dispatch(AdminLogOutThink());
     }
@@ -30,25 +32,32 @@ const Sidebar = () => {
     return (
         <div className="sidebar-wrapper bg-[#151f30] border-r-2  !z-50 border-[#1b273b] h-screen flex flex-col ">
             {/* Logo Section */}
-            <div className="logo border-b-2 border-[#1b273b] py-[1.7rem] px-3  border-sidebar-border">
-                <h1 className="text-white text-2xl font-bold">Pnb</h1>
+            <div className="logo text-center border-b-2 border-[#1b273b] py-[1.55rem] px-3  border-sidebar-border">
+                <h1 className="text-white text-2xl font-bold">Flix <span className="text-[14px] text-[#384e73]">TV</span></h1>
             </div>
 
             {/* User Info Section */}
             <div className="account py-4 px-3 border-b-2 border-[#1b273b] border-sidebar-border flex items-center justify-between">
-                <div className="flex items-center">
-                    <Avatar variant="rounded" sx={{ width: 45, height: 45 }}>
-                        <img src={userImage} alt="User" />
-                    </Avatar>
-                    <div className="ml-3">
-                        {admin ? (
-                            <ul className="m-0 p-0 list-none">
-                                <li className="text-white text-lg">{admin.displayName}</li>
-                                <li className="text-white text-sm">{admin.email}</li>
-                            </ul>
-                        ) : (
-                            <p className="text-white">Loading...</p> 
-                        )}
+                <div className="flex items-center relative">
+                    {admin ? (
+                        <>
+                            <Avatar variant="rounded" sx={{ width: 45, height: 45 }}>
+                                <img src={admin ? admin.photoURL : userImage} alt="User" />
+                            </Avatar>
+                            <div className="ml-3">
+                                <ul className="m-0 p-0 list-none">
+                                    <li className="text-white text-lg">{admin.displayName}</li>
+                                    <li className="text-white text-sm">{admin.email}</li>
+                                </ul>
+                            </div>
+                        </>
+                    ) : (
+                        <p className="text-white">Loading...</p>
+                    )}
+                    <div className="edit-profile absolute top-[-1rem] right-[-0.8rem]">
+                        <Button className="!min-w-0 !bg-sidebar-border  hover:!bg-[#1d2a3f] inline-block" onClick={ () => {handleMenuClick ()}}>
+                            <EditIcon className="text-white" />
+                        </Button>
                     </div>
                 </div>
             </div>
