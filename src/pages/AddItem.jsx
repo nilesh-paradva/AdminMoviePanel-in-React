@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { MovieAddThunk } from "../services/actions/MovieAct";
 import { useNavigate } from "react-router-dom";
+import AddIcon from "../assets/images/loadingIcon/movieadd.gif"
 
 const AddItems = () => {
 
@@ -155,7 +156,7 @@ const AddItems = () => {
                             </div>
                         </Col>
                         <div className="text-right">
-                            <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded">{isLoading ? "Publishing..." : "Publish"}</button>
+                            <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded">{isLoading ? <img src={AddIcon} alt="loader" className="w-6" /> : "Publish"}</button>
                         </div>
                     </form>
                 </Row>

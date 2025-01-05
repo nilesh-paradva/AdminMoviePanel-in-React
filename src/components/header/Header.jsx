@@ -9,7 +9,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useEffect, useState } from "react"
 import { SideBarAct } from "../../services/actions/MovieAct"
 
-const Header = () => {
+const Header = ({title}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { sidebarToogle } = useSelector(state => state.MovieReducer)
@@ -37,7 +37,7 @@ const Header = () => {
                         <Col lg={12}>
                             <header className="flex items-center justify-between">
                                 <div className="logo">
-                                    <h2 className="text-white">DashBoard</h2>
+                                    <h2 className="text-white">{title}</h2>
                                 </div>
                                 <div className="addbtn flex items-center justify-end gap-x-3">
                                     <Button className="!rounded-lg !bg-[#151f30] transition duration-200 hover:!bg-[#1d2a3f] !min-w-0" onClick={AdminLogOut}><span className="py-1 text-white"><ExitToAppIcon /></span></Button>

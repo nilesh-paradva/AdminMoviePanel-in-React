@@ -16,7 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AdminLogOutThink } from "../../services/actions/AuthAction";
 import { SideBarAct } from "../../services/actions/MovieAct";
 
-const Sidebar = () => {
+const Sidebar = ({ onMenuSelect }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { admin } = useSelector(state => state.AuthReducer);
@@ -24,6 +24,11 @@ const Sidebar = () => {
     const DeleteAdmin = () => {
         dispatch(AdminLogOutThink());
     }
+
+    const handleMenuName = (menuName) => {
+        onMenuSelect(menuName);  // Pass the selected menu item
+    };
+
 
     const handleMenuClick = () => {
         dispatch(SideBarAct());
@@ -71,12 +76,12 @@ const Sidebar = () => {
             <nav className="flex-grow overflow-y-auto px-3 py-3">
                 <ul className="m-0 p-0 list-none">
                     <li className="px-2 my-2">
-                        <Link to={"/"} className="px-3 py-2 text-white bg-sidebar-border block rounded-lg hover:bg-[#1d2a3f] no-underline transition duration-200" onClick={handleMenuClick}>
+                        <Link to={"/"} className="px-3 py-2 text-white bg-sidebar-border block rounded-lg hover:bg-[#1d2a3f] no-underline transition duration-200" onClick={ () => {handleMenuClick ();handleMenuName("Dashboard")}} >
                             <DashboardIcon className="mr-3" />&nbsp;<span className=" d-xl-none">Dashboard</span> <span className="d-none d-xl-inline">Dashboard</span>
                         </Link>
                     </li>
                     <li className="px-2 my-2">
-                        <Link to={"/catalog"} className="px-3 py-2 text-white bg-sidebar-border block rounded-lg hover:bg-[#1d2a3f] no-underline transition duration-200" onClick={handleMenuClick}>
+                        <Link to={"/catalog"} className="px-3 py-2 text-white bg-sidebar-border block rounded-lg hover:bg-[#1d2a3f] no-underline transition duration-200" onClick={ () => {handleMenuClick ();handleMenuName("Catalog")}}>
                             <WidgetsIcon className="mr-3" />&nbsp;<span className=" d-xl-none">Catalog</span> <span className="d-none d-xl-inline">Catalog</span>
                         </Link>
                     </li>
@@ -87,31 +92,31 @@ const Sidebar = () => {
                             </MenuButton>
                             <MenuItems className="absolute right-0 mt-2 w-56 !rounded-lg  bg-[#131720] shadow-lg ring-1 ring-black/5 border-2 border-[#3b445a]">
                                 <MenuItem className="">
-                                    <Link to="/additems" className="block px-4 py-2 text-[16px] text-white no-underline transi duration-200 hover:!bg-[#1d2a3f] rounded-t-lg" onClick={handleMenuClick}>Add&nbsp;Item</Link>
+                                    <Link to="/additems" className="block px-4 py-2 text-[16px] text-white no-underline transi duration-200 hover:!bg-[#1d2a3f] rounded-t-lg" onClick={ () => {handleMenuClick ();handleMenuName("Add Movie")}}>Add&nbsp;Item</Link>
                                 </MenuItem>
                                 <MenuItem>
-                                    <a href="#" className="block px-4 py-2 text-[16px] text-white no-underline hover:!bg-[#1d2a3f] rounded-b-lg" onClick={handleMenuClick}>Forgate&nbsp;Password</a>
+                                    <a href="#" className="block px-4 py-2 text-[16px] text-white no-underline hover:!bg-[#1d2a3f] rounded-b-lg" onClick={ () => {handleMenuClick ();handleMenuName("Forgate Password")}}>Forgate&nbsp;Password</a>
                                 </MenuItem>
                             </MenuItems>
                         </Menu>
                     </li>
                     <li className="px-2 my-2">
-                        <Link to={"/users"} className="px-3 py-2 text-white bg-sidebar-border block rounded-lg hover:bg-[#1d2a3f] no-underline transition duration-200" onClick={handleMenuClick}>
+                        <Link to={"/users"} className="px-3 py-2 text-white bg-sidebar-border block rounded-lg hover:bg-[#1d2a3f] no-underline transition duration-200" onClick={ () => {handleMenuClick ();handleMenuName("Users")}}>
                             <PeopleAltIcon className="mr-3" />&nbsp;<span className=" d-xl-none">Users</span> <span className="d-none d-xl-inline">Users</span>
                         </Link>
                     </li>
                     <li className="px-2 my-2">
-                        <a href="#" className="px-3 py-2 text-white bg-sidebar-border block rounded-lg hover:bg-[#1d2a3f] no-underline transition duration-200" onClick={handleMenuClick}>
+                        <a href="#" className="px-3 py-2 text-white bg-sidebar-border block rounded-lg hover:bg-[#1d2a3f] no-underline transition duration-200" onClick={ () => {handleMenuClick ();handleMenuName("Comments")}}>
                             <CommentIcon className="mr-3" />&nbsp;<span className=" d-xl-none">Comments</span> <span className="d-none d-xl-inline">Comments</span>
                         </a>
                     </li>
                     <li className="px-2 my-2">
-                        <a href="#" className="px-3 py-2 text-white bg-sidebar-border block rounded-lg hover:bg-[#1d2a3f] no-underline transition duration-200" onClick={handleMenuClick}>
+                        <a href="#" className="px-3 py-2 text-white bg-sidebar-border block rounded-lg hover:bg-[#1d2a3f] no-underline transition duration-200" onClick={ () => {handleMenuClick ();handleMenuName("Reviews")}}>
                             <ReviewsIcon className="mr-3" />&nbsp;<span className=" d-xl-none">Reviews</span> <span className="d-none d-xl-inline">Reviews</span>
                         </a>
                     </li>
                     <li className="px-2 my-2">
-                        <a href="#" className="px-3 py-2 text-white bg-sidebar-border block rounded-lg hover:bg-[#1d2a3f] no-underline transition duration-200" onClick={handleMenuClick}>
+                        <a href="#" className="px-3 py-2 text-white bg-sidebar-border block rounded-lg hover:bg-[#1d2a3f] no-underline transition duration-200" onClick={ () => {handleMenuClick ();handleMenuName("Back to Web")}}>
                             <ArrowBackIcon className="mr-3" />&nbsp;<span className=" d-xl-none">Back&nbsp;to&nbsp;Web</span> <span className="d-none d-xl-inline">Back&nbsp;to&nbsp;Web</span>
                         </a>
                     </li>

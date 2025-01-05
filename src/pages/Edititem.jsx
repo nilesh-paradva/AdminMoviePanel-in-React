@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { MovieAddThunk, SingleItemThunk, UpdateItemsThunk } from "../services/actions/MovieAct";
 import { useNavigate, useParams } from "react-router-dom";
+import EditMovie from "../assets/images/loadingIcon/edit.gif"
 
 const EditItem = () => {
 
@@ -58,7 +59,7 @@ const EditItem = () => {
     }, [admin])
 
     return (
-        <section className="bg-[#131720] flex justify-center h-[calc(100vh-11.2rem)] sm:h-[calc(100vh-8rem)] items-center bg-cover rounded-lg overflow-y-scroll">
+        <section className="bg-[#131720] flex justify-center h-[calc(100vh-11.2rem)] sm:h-[calc(100vh-8rem)] items-center bg-cover rounded-lg overflow-y-scroll scroll">
             <Container>
                 <Row className="items-center !mt-[40rem] !mb-4 sm:!mt-[28rem]">
                     <form onSubmit={handleSubmit}>
@@ -144,7 +145,7 @@ const EditItem = () => {
                             </div>
                         </Col>
                         <div className="text-right">
-                            <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded">{isLoading ? "Edit Item..." : "Edit Item"}</button>
+                            <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded">{isLoading ? <img src={EditMovie} alt="loader" className="w-6" /> : "Edit Item"}</button>
                         </div>
                     </form>
                 </Row>

@@ -16,7 +16,7 @@ const SingleMovie = () => {
 
     return (
         <>
-            <section className="flex items-center justify-center !h-[calc(100vh-8rem)] sm:h-[calc(100vh-8rem)] overflow-y-scroll">
+            <section className="flex items-center justify-center !h-[calc(100vh-8rem)] sm:h-[calc(100vh-8rem)] overflow-y-scroll scroll">
                 <Container>
                     <Row className="!mt-[35rem] sm:!mt-[40rem] md:!mt-[0rem]">
                         <Col lg={12}>
