@@ -2,6 +2,7 @@ const initialState = {
     movies: [],
     users: [],
     movie: null,
+    menuName : "Dashboard",
     isLoading: false,
     isCreated: false,
     sidebarToogle: false
@@ -27,6 +28,9 @@ export const MovieReducer = (state = initialState, action) => {
 
         case "SIDEBAR_TOOGLE":
             return { ...state, sidebarToogle: !state.sidebarToogle }
+
+        case "MENU_NAME":
+            return { ...state, menuName: action.payload }
 
         case "LOADING":
             return { ...state, isLoading: true }

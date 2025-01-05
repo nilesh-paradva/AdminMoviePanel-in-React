@@ -25,6 +25,7 @@ const EditItem = () => {
         genre: "",
         itemType: "",
         link: "",
+        coverImage: ""
     });
 
     const handleChange = (e) => {
@@ -35,6 +36,32 @@ const EditItem = () => {
         e.preventDefault();
         dispatch(UpdateItemsThunk(formInput));
     }
+
+    const handleImage = (e) => {
+        const file = e.target.files[0];
+        if (!file || file.size > 2097152) return alert('File size must be less than 2MB');
+
+        const reader = new FileReader();
+        reader.onload = ({ target }) => {
+            const img = new Image();
+            img.src = target.result;
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                const ratio = Math.min(800 / img.width, 600 / img.height, 1);
+
+                canvas.width = img.width * ratio;
+                canvas.height = img.height * ratio;
+
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                setFormInput((prev) => ({
+                    ...prev,
+                    coverImage: canvas.toDataURL('image/jpeg', 0.8),
+                }));
+            };
+        };
+        reader.readAsDataURL(file);
+    };
 
     useEffect(() => {
         dispatch(SingleItemThunk(id))
@@ -108,13 +135,13 @@ const EditItem = () => {
                             <div className="mb-4">
                                 <label htmlFor="file-upload" className="block mb-2 text-white">Upload Photo</label>
                                 <div className="relative w-full">
-                                    <input type="file" id="file-upload" className="hidden"/>
+                                    <input type="file" id="file-upload" className="hidden" onChange={handleImage}/>
                                     <label htmlFor="file-upload" className="cursor-pointer flex items-center justify-center w-full py-2 border-2 border-dashed border-gray-500 rounded-lg bg-[#151f30] text-white hover:border-blue-400 hover:bg-[#1e293b] focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                        <span className="mr-2">📁</span> Choose a file or drag it here
+                                        <span className="mr-2">📁</span> Upload image
                                     </label>
                                 </div>
                                 <p className="mt-2 text-sm text-gray-400">
-                                    PNG, JPG, GIF up to 5MB
+                                    PNG, JPG up to 2MB
                                 </p>
                             </div>
                             <div className="mb-4">

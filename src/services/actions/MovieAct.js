@@ -47,6 +47,13 @@ export const LoadingAct = () => {
     }
 }
 
+export const MenuNameAct = (name) => {
+    return {
+        type: "MENU_NAME",
+        payload: name
+    }
+}
+
 
 // Thunk 
 

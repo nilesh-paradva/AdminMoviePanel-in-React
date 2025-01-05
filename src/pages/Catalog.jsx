@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { DeleteItemThunk, getMoviesThunk } from "../services/actions/MovieAct";
+import { DeleteItemThunk, getMoviesThunk, MenuNameAct } from "../services/actions/MovieAct";
 import { Button } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
@@ -16,6 +16,10 @@ const Catalog = () => {
 
     const DeleteItem = (id) => {
         dispatch(DeleteItemThunk(id));
+    };
+
+    const handleName = (name) => {
+        dispatch(MenuNameAct(name));
     };
 
     useEffect(() => {
@@ -41,7 +45,7 @@ const Catalog = () => {
                                     <p className="text-sm mb-2 hover:text-[#3498db] transition-colors flex items-center justify-between"><strong>Country:</strong> {item.country}</p>
                                 </div>
                                 <div className="flex justify-between mt-3">
-                                    <Button aria-label="Edit movie" onClick={() => navigate(`/edititem/${item.id}`)} className="bg-[#435b85] hover:bg-[#354c6b] text-white p-2 rounded-full transition-colors"><EditIcon /></Button>
+                                    <Button aria-label="Edit movie" onClick={() => { navigate(`/edititem/${item.id}`); handleName("Edit Item") }} className="bg-[#435b85] hover:bg-[#354c6b] text-white p-2 rounded-full transition-colors"><EditIcon /></Button>
                                     <Button aria-label="Delete movie" onClick={() => DeleteItem(item.id)} className="bg-[#e74c3c] hover:bg-[#c0392b] text-white p-2 rounded-full transition-colors"><DeleteIcon /></Button>
                                     <Button aria-label="View movie" className="bg-[#2ecc71] hover:bg-[#27ae60] text-white p-2 rounded-full transition-colors" onClick={() => navigate(`/singleviewmovie/${item.id}`)}><RemoveRedEyeIcon /></Button>
                                 </div>

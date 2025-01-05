@@ -14,9 +14,9 @@ import { ChevronDownIcon } from "@heroicons/react/16/solid";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { AdminLogOutThink } from "../../services/actions/AuthAction";
-import { SideBarAct } from "../../services/actions/MovieAct";
+import { MenuNameAct, SideBarAct } from "../../services/actions/MovieAct";
 
-const Sidebar = ({ onMenuSelect }) => {
+const Sidebar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { admin } = useSelector(state => state.AuthReducer);
@@ -25,13 +25,12 @@ const Sidebar = ({ onMenuSelect }) => {
         dispatch(AdminLogOutThink());
     }
 
-    const handleMenuName = (menuName) => {
-        onMenuSelect(menuName);  // Pass the selected menu item
-    };
-
-
     const handleMenuClick = () => {
         dispatch(SideBarAct());
+    };
+
+    const handleMenuName = (name) => {
+        dispatch(MenuNameAct(name));
     };
 
     return (
@@ -76,7 +75,7 @@ const Sidebar = ({ onMenuSelect }) => {
             <nav className="flex-grow overflow-y-auto px-3 py-3">
                 <ul className="m-0 p-0 list-none">
                     <li className="px-2 my-2">
-                        <Link to={"/"} className="px-3 py-2 text-white bg-sidebar-border block rounded-lg hover:bg-[#1d2a3f] no-underline transition duration-200" onClick={ () => {handleMenuClick ();handleMenuName("Dashboard")}} >
+                        <Link to={"/"} className="px-3 py-2 text-white bg-sidebar-border block rounded-lg hover:bg-[#1d2a3f] no-underline transition duration-200" onClick={ () => {handleMenuClick (); handleMenuName("Dashboard")}} >
                             <DashboardIcon className="mr-3" />&nbsp;<span className=" d-xl-none">Dashboard</span> <span className="d-none d-xl-inline">Dashboard</span>
                         </Link>
                     </li>
