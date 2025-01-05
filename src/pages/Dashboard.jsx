@@ -23,7 +23,7 @@ const Dashboard = () => {
     return (
         <div className="dashboard-layout h-screen flex">
             <div className={`transition-all duration-500 w-72 d-xl-none  ${ sidebarToogle ? 'trsnlate-x-0  fixed z-50' : ' translate-x-[-100%] fixed z-50'} overflow-hidden`}><Sidebar/></div>
-            <div className={`transition-all duration-500 w-72 overflow-hidden d-none d-xl-block`}><Sidebar/></div>
+            <div className={`transition-all duration-500 lg:!w-[22rem] xl:!w-72  overflow-hidden d-none d-xl-block`}><Sidebar/></div>
             <div className="flex flex-col flex-grow">
                 <Header/>
                 <div className="content-area flex-grow p-3">

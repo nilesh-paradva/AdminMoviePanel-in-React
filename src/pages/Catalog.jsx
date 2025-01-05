@@ -28,7 +28,7 @@ const Catalog = () => {
 
     return (
         <section className="catalog !h-[calc(100vh-8rem)] sm:h-[calc(100vh-8rem)] overflow-y-scroll scroll">
-            <Container>
+            <Container className="xl:!max-w-[1140px]">
                 <Row className="gap-y-7 !mb-20">
                     {movies.map((item) => (
                         <Col lg={4} key={item.id}>
