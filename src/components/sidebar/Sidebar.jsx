@@ -36,7 +36,7 @@ const Sidebar = () => {
     return (
         <div className="sidebar-wrapper bg-[#151f30] border-r-2  !z-50 border-[#1b273b] h-screen flex flex-col ">
             {/* Logo Section */}
-            <div className="logo text-center border-b-2 border-[#1b273b] py-[1.55rem] px-3  border-sidebar-border">
+            <div className="logo text-center border-b-2 border-[#1b273b] py-[1.57rem] px-3  border-sidebar-border">
                 <h1 className="text-white text-2xl font-bold">Flix <span className="text-[14px] text-[#384e73]">TV</span></h1>
             </div>
 

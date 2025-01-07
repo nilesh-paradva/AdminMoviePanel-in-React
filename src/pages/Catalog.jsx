@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { DeleteItemThunk, getMoviesThunk, MenuNameAct } from "../services/actions/MovieAct";
 import { Button } from "@mui/material";
+import { Col, Container, Row } from "react-bootstrap";
 import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import EditIcon from '@mui/icons-material/Edit';
 import "../index.css";
-import { Col, Container, Row } from "react-bootstrap";
 
 const Catalog = () => {
     const { movies } = useSelector((state) => state.MovieReducer);
