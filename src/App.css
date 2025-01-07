@@ -7,3 +7,10 @@
     background-color: #7296a7;
     border-radius: 10rem;
 }
+
+.validInput:invalid {
+    border: 2px solid red;
+}
+.validInput:valid {
+    border: 2px solid #686f7d;
+}
