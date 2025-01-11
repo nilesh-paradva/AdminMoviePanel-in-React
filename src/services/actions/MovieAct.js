@@ -66,7 +66,9 @@ export const MovieAddThunk = (data) => async (dispatch) => {
     try {
         data.uid = uidGet;
         await addDoc(collection(db, "movies"), data);
-        dispatch(MovieAddAct());
+        setTimeout(() => {
+            dispatch(MovieAddAct());
+        },2000);
         console.log("Movie added successfully.");
     } catch (err) {
         console.error("Error adding movie:", err);
@@ -128,7 +130,9 @@ export const UpdateItemsThunk = (data) => async dispatch => {
     dispatch(LoadingAct());
     try {
         await setDoc(doc(db, "movies", data.id), data);
-        dispatch(UpdateItemsAct(data));
+        setTimeout(() => {
+            dispatch(UpdateItemsAct(data));
+        },2000);
         console.log("Movie updated successfully.");
     } catch (err) {
         console.error("Error updating movie:", err);

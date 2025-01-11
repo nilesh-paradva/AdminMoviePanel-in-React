@@ -37,20 +37,8 @@ const SingleMovie = () => {
                                                 <li>{movie.runningTime} Min</li>
                                                 <li>{movie.quality}</li>
                                             </ul>
-                                            <div >
-                                                <fieldset className="rating mb-3">
-                                                    {[...Array(10)].map((_, i) => (
-                                                        <React.Fragment key={i}>
-                                                            <input type="radio" id={`star${10 - i}`} name="rating" value={10 - i} className="hidden" />
-                                                            <label htmlFor={`star${10 - i}`} className="text-gray-400 cursor-pointer text-xl hover:text-[#344a70]">
-                                                                &#9733;
-                                                            </label>
-                                                        </React.Fragment>
-                                                    ))}
-                                                </fieldset>
-                                            </div>
-                                            <p className="text-white text-sm leading-6">{movie.description} <a href="https://www.imdb.com/title/tt0111161/" target="_blank" rel="noopener noreferrer" className="text-[#3a537c] no-underline !inline-block mb-3">Read more...</a></p>
-                                            <a href="https://www.youtube.com/watch?v=ot6C1ZKyiME" target="_blank" rel="noopener noreferrer" className="inline-block  border-2 border-[#151f30] bg-[#1a263b] py-2 px-6 rounded-lg hover:bg-[#151f30] text-white transition duration-300 text-center no-underline"> WATCH TRAILER</a>
+                                            <p className="text-white text-sm leading-6">{movie.description} <Link href="javascript:void(0)"  rel="noopener noreferrer" className="text-[#3a537c] no-underline !inline-block mb-3">Read more...</Link></p>
+                                            <a href={movie.link} target="_blank" rel="noopener noreferrer" className="inline-block  border-2 border-[#151f30] bg-[#1a263b] py-2 px-6 rounded-lg hover:bg-[#151f30] text-white transition duration-300 text-center no-underline"> WATCH MOVIE</a>
                                         </div>
                                     </div>
                                 </div>

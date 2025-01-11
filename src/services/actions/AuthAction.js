@@ -40,20 +40,19 @@ const LoadingAct = () => {
     };
 }
 
-// const SingleUserAct = (data) => {
-//     return {
-//         type: "GET_ADMIN_SUCCESS",
-//         payload: data
-//     }
-// }
+export const ErrorAct = (data) => {
+    return {
+        type: "ERROR",
+        payload: data
+    };
+}
 
-// const UpdateProfileAct = (data) => {
-//     return {
-//         type: "UPDATE_PROFILE_SUCCESS",
-//         payload: data
-//     }
-// }
-
+export const isOpenAct = (data) => {
+    return {
+        type: "ISOPEN",
+        payload: data,
+    };
+};
 
 
 //Thunk
@@ -71,7 +70,18 @@ export const SignUpThunk = (data) => async dispatch => {
         await addDoc(collection(db, "admins"), userData);
         dispatch(SignUpAct());
     } catch (error) {
-        console.log(error);
+        let errorMessage = "An error occurred. Please try again.";
+
+        if (error.code === "auth/email-already-in-use") {
+            errorMessage = "The email address is already in use by another account.";
+        } else if (error.code === "auth/weak-password") {
+            errorMessage = "The password should be at least 6 characters.";
+        } else if (error.code) {
+            errorMessage = `Error: ${error.message}`;
+        }
+
+        dispatch(ErrorAct(errorMessage));
+        dispatch(isOpenAct(true));
     }
 }
 
@@ -81,16 +91,28 @@ export const SignInThunk = (data) => async dispatch => {
         dispatch(LoadingAct());
         const res = await signInWithEmailAndPassword(auth, data.email, data.password);
         localStorage.setItem('uid', JSON.stringify(res.user.uid));
-       const userdata = {
-           displayName: res.user.displayName,
-           uid: res.user.uid,
-           email: res.user.email
-       }
+        const userdata = {
+            displayName: res.user.displayName,
+            uid: res.user.uid,
+            email: res.user.email
+        }
         dispatch(SignInAct(userdata));
         console.log("signIn", userdata);
-    } catch (err) {
-        console.log("Error code", err.code);
-        console.log("Error message", err.message);
+    } catch (error) {
+        let errorMessage = "An error occurred. Please try again.";
+
+        if (error.code === "auth/invalid-credential") {
+            errorMessage = "No user found with this email.";
+         }  else if (error.code === "auth/wrong-password") {
+            errorMessage = "Incorrect password. Please try again.";
+        }  else {
+            errorMessage = `Error: ${error.message}`;
+        }
+
+        dispatch(ErrorAct(errorMessage));
+        dispatch(isOpenAct(true));
+
+        console.error("SignIn Error:", error.message);
     }
 }
 

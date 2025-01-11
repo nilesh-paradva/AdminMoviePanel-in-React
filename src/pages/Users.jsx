@@ -1,15 +1,27 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { LoginUserGateThunk } from "../services/actions/MovieAct";
+import { LoginUserGateThunk, MenuNameAct } from "../services/actions/MovieAct";
 import { Col, Container, Row } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 
 const GetUsers = () => {
     const dispatch = useDispatch();
+    const location = useLocation();
     const { users } = useSelector(state => state.MovieReducer);
+
+    const handleName = (name) => {
+        dispatch(MenuNameAct(name));
+    };
+    
+    useEffect(() => {
+        if (location.pathname === `/users`) {
+            handleName('Users');
+        } 
+    }, [location.pathname]);
 
     useEffect(() => {
         dispatch(LoginUserGateThunk());
-    }, [dispatch]);
+    }, []);
 
     return (
         <section className="py-3">
