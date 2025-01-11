@@ -151,13 +151,13 @@ const AddItems = () => {
                                         </label>
                                     </div>
                                 </div>
-                                <div className="grid grid-cols-2 gap-4 mb-4">
-                                    <div className="flex justify-center items-start flex-col">
+                                <div className="flex items-center flex-col flex-lg-row gap-x-6">
+                                    <div className="flex justify-center items-start flex-col !w-full mb-4">
                                         <label htmlFor="fileInput" className="text-white mb-2">Upload Video</label>
                                         <label htmlFor="fileInput" className="bg-[#151f30] border-2 border-[#686f7d] !w-full text-[#b1a6a6] px-4 py-2 rounded cursor-pointer hover:bg-[#1f2b40] active:bg-[#122030] transition outline-none">Upload Video</label>
                                         <input type="file" id="fileInput" className="hidden" />
                                     </div>
-                                    <div>
+                                    <div className="!w-full mb-4">
                                         <label htmlFor="link" className="block mb-2 text-white">Or Link</label>
                                         <input type="text" id="link" name="link" value={formInput.link} className="validInput w-full p-2 rounded bg-[#151f30] text-white placeholder-[#b1a6a6] focus:outline-none" placeholder="https://" onChange={handleChange} />
                                     </div>
