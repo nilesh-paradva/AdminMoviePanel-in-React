@@ -9,10 +9,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useEffect, useState } from "react"
 import { MenuNameAct, SideBarAct } from "../../services/actions/MovieAct"
 
-const Header = ({title}) => {
+const Header = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const location = useLocation();
     const { sidebarToogle, menuName } = useSelector(state => state.MovieReducer)
     const { admin } = useSelector((state) => state.AuthReducer);
 

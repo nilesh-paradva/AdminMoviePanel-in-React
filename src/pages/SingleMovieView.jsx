@@ -2,7 +2,7 @@ import { Col, Container, Row, Spinner } from "react-bootstrap";
 import React, { useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { SingleItemThunk } from "../services/actions/MovieAct";
+import { MenuNameAct, SingleItemThunk } from "../services/actions/MovieAct";
 
 const SingleMovie = () => {
 
@@ -10,9 +10,19 @@ const SingleMovie = () => {
     const { id } = useParams();
     const { movie } = useSelector(state => state.MovieReducer);
 
+    const handleName = (name) => {
+        dispatch(MenuNameAct(name));
+    };
+
     useEffect(() => {
         dispatch(SingleItemThunk(id));
     }, [id]);
+
+    useEffect(() => {
+        if (location.pathname === `/singleviewmovie/${id}`) {
+            handleName('View Movie');
+        }
+    }, [location.pathname]);
 
     return (
         <>

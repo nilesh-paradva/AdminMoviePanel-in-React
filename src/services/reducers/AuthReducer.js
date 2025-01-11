@@ -17,7 +17,7 @@ export const AuthReducer = (state = initialState, action) => {
         case "SIGNIN":
             return { ...state, admin: action.payload, isSignIn: true, isLoading: false, isCreated: false, isOpen: false }
 
-        case "LOGINUSERGATE":
+        case "LOGINADMINGATE":
             return { ...state, admins: action.payload, isSignIn: false, isLoading: false, isCreated: false, isOpen: false }
 
         case "SIGNUPBACK":

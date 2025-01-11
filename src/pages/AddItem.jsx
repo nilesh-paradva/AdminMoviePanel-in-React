@@ -106,14 +106,14 @@ const AddItems = () => {
                                         <label htmlFor="description" className="block mb-2 text-white">Description</label>
                                         <textarea pattern="[A-Za-z ]{2,}" name="description" value={formInput.description} className="validInput w-full p-2 rounded bg-[#151f30] text-white placeholder-[#b1a6a6] resize-none outline-none" placeholder="Enter description" onChange={handleChange}></textarea>
                                     </div>
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div className="mb-4">
+                                    <div className="flex items-center w-full flex-col flex-lg-row gap-x-6">
+                                        <div className="mb-4 w-full">
                                             <label htmlFor="releaseYear" className="block mb-2 text-white">Release Year (dd-mm-yyyy)</label>
                                             <input type="text" pattern="\d{2}-\d{2}-\d{4}" id="releaseYear" name="releaseYear" value={formInput.releaseYear} className="validInput w-full p-2 rounded bg-[#151f30] text-white placeholder-[#b1a6a6] focus:border-blue-500 focus:outline-none" placeholder="Enter release year" onChange={handleChange} />
                                         </div>
-                                        <div className="mb-4">
+                                        <div className="mb-4 w-full">
                                             <label htmlFor="runningTime" className="block mb-2 text-white">Running Time (min)</label>
-                                            <input type="text" pattern="\d[0-9]{1,}" id="runningTime" name="runningTime" value={formInput.runningTime} className="validInput w-full p-2 rounded bg-[#151f30] text-white placeholder-[#b1a6a6] focus:border-blue-500 focus:outline-none" placeholder="Enter running time" onChange={handleChange} />
+                                            <input type="text" pattern="\d[0-9]{1,}" id="runningTime" name="runningTime" value={formInput.runningTime} className="validInput block w-full p-2 rounded bg-[#151f30] text-white placeholder-[#b1a6a6] focus:border-blue-500 focus:outline-none" placeholder="Enter running time" onChange={handleChange} />
                                         </div>
                                     </div>
                                     <div className="mb-4">

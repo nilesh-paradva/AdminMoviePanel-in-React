@@ -77,13 +77,15 @@ export const MovieAddThunk = (data) => async (dispatch) => {
 
 // get Movie
 export const getMoviesThunk = () => async dispatch => {
+    dispatch(LoadingAct());
     try {
         const recs = (await getDocs(collection(db, "movies"))).docs.map((doc) => ({ ...doc.data(), id: doc.id }));
         const uidGet = JSON.parse(localStorage.getItem("uid"));
         const filterRec = recs.filter(rec => rec.uid === uidGet);
         console.log("filterRec", filterRec);
-        
-        dispatch(getMoviesAct(filterRec));
+        setTimeout(() => {
+            dispatch(getMoviesAct(filterRec));
+        },2000);
         console.log(filterRec.length > 0 ? "Movies dispatche" : "No matching movies.");
 
     } catch (err) {
@@ -94,6 +96,7 @@ export const getMoviesThunk = () => async dispatch => {
 
 // get user 
 export const LoginUserGateThunk = () => async dispatch => {
+    dispatch(LoadingAct())
     try {
         const recs = (await getDocs(collection(db, "favorite_movies"))).docs.map((doc) => ({ ...doc.data(), id: doc.id }));
         const uidGet = JSON.parse(localStorage.getItem("uid"));
@@ -107,7 +110,9 @@ export const LoginUserGateThunk = () => async dispatch => {
         );
 
         console.log("Matched Users", matchedUsers);
-        dispatch(getLoginUsers(matchedUsers));
+        setTimeout(() => {
+            dispatch(getLoginUsers(matchedUsers));
+        },2000)
     } catch (err) {
         console.error("Error getting user:", err);
     }

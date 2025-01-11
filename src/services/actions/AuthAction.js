@@ -23,7 +23,7 @@ const SignOutAct = () => {
 
 const LoginUserGateAct = (data) => {
     return {
-        type: "LOGINUSERGATE",
+        type: "LOGINADMINGATE",
         payload: data
     };
 };
