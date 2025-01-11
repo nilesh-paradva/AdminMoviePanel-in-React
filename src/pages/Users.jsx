@@ -29,7 +29,9 @@ const GetUsers = () => {
             <Container>
                 <Row className="gap-y-5">
                     {isLoading ? <div className="flex justify-center items-center !h-[calc(100vh-10rem)] sm:h-[calc(100vh-8rem)] overflow-hidden"> <img src={UserIcon} alt="Loading" className="!w-[30%]" /></div> :
+
                         users.length === 0 ? <h2 className="text-center text-gray-400">No users found</h2> :
+
                         users.map((user) => (
                             <Col lg={4} key={user.uid}>
                                 <div key={user.uid} className="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
