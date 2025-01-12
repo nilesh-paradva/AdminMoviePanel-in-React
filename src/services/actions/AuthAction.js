@@ -76,6 +76,10 @@ export const SignUpThunk = (data) => async dispatch => {
             errorMessage = "The email address is already in use by another account.";
         } else if (error.code === "auth/weak-password") {
             errorMessage = "The password should be at least 6 characters.";
+        } else if (error.code === "auth/missing-email") {
+            errorMessage = "Please enter your email.";
+        } else if (error.code === "auth/missing-password") {
+            errorMessage = "Please enter your password.";
         } else if (error.code) {
             errorMessage = `Error: ${error.message}`;
         }
@@ -97,22 +101,21 @@ export const SignInThunk = (data) => async dispatch => {
             email: res.user.email
         }
         dispatch(SignInAct(userdata));
-        console.log("signIn", userdata);
     } catch (error) {
         let errorMessage = "An error occurred. Please try again.";
 
         if (error.code === "auth/invalid-credential") {
             errorMessage = "No user found with this email.";
-         }  else if (error.code === "auth/wrong-password") {
-            errorMessage = "Incorrect password. Please try again.";
-        }  else {
+        } else if (error.code === "auth/invalid-email") {
+            errorMessage = "Please enter your email.";
+        } else if (error.code === "auth/missing-password") {
+            errorMessage = "Please enter your password.";
+        } else {
             errorMessage = `Error: ${error.message}`;
         }
 
         dispatch(ErrorAct(errorMessage));
         dispatch(isOpenAct(true));
-
-        console.error("SignIn Error:", error.message);
     }
 }
 
@@ -172,30 +175,3 @@ export const HomeNavigateThunk = () => async dispatch => {
         console.error("Error get recipes:", err);
     }
 }
-
-// update Profile
-
-//Single User
-// export const SingleUserThunk = (uid) => async (dispatch) => {
-//     try {
-//         const docRef = doc(db, "admins", uid);
-//         const docSnap = await getDoc(docRef);
-//         if (docSnap.exists()) {
-//             dispatch(SingleUserAct(docSnap.data()));
-//         }
-//     } catch (error) {
-//         console.error("Error fetching user: ", error);
-//     }
-// };
-
-
-// export const UpdateProfileThunk = (data) => async dispatch => {
-//     // dispatch(LoadingAct());
-//     try {
-//         await setDoc(doc(db, "admins", data.uid), data);
-//         dispatch(UpdateProfileAct(data));
-//         console.log("admin updated successfully.");
-//     } catch (err) {
-//         console.error("Error updating admin:", err);
-//     }
-// }

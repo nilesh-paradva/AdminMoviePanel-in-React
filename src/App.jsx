@@ -1,7 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard'; 
-import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import SignIn from './pages/SignIn';
 import Home from './pages/Home';
 import AddItems from './pages/AddItem';
@@ -10,6 +8,8 @@ import Catalog from './pages/Catalog';
 import EditItem from './pages/Edititem';
 import SingleMovie from './pages/SingleMovieView';
 import GetUsers from './pages/Users';
+import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import EditProfile from './pages/EditProfile';
 
 function App() {
