@@ -7,12 +7,12 @@ import { getAuth, GoogleAuthProvider  } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDrcwVt1rxIbE5VaRbL_nP-yxXljB62x4k",
-  authDomain: "movieadmin-user.firebaseapp.com",
-  projectId: "movieadmin-user",
-  storageBucket: "movieadmin-user.firebasestorage.app",
-  messagingSenderId: "354821696758",
-  appId: "1:354821696758:web:6ce855d0dc9a32d1b250d7"
+  apiKey: "AIzaSyAUS3Pi8u05sB1f9CEN4iib0Y0hHJy9AZM",
+  authDomain: "cinemacircle-6d533.firebaseapp.com",
+  projectId: "cinemacircle-6d533",
+  storageBucket: "cinemacircle-6d533.firebasestorage.app",
+  messagingSenderId: "834710642223",
+  appId: "1:834710642223:web:53353a0ed0f9249543b0da"
 };
 
 // Initialize Firebase
