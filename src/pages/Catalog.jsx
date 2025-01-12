@@ -44,8 +44,8 @@ const Catalog = () => {
                         movies.map((item) => (
                             <Col lg={4} key={item.id}>
                                 <div className="bg-[#1f2a3d] text-white rounded-lg shadow-md p-4 flex flex-col justify-around h-full transition-transform transform hover:scale-105 hover:shadow-lg mt-8">
-                                    <div className=" h-[40%] overflow-hidden rounded-lg">
-                                        <img src={item.coverImage} alt={item.title} className=" object-cover rounded-lg" />
+                                    <div className=" overflow-hidden rounded-lg">
+                                        <img src={item.coverImage} alt={item.title} className="aspect-[6/9] w-full rounded-lg" />
                                     </div>
                                     <div>
                                         <h3 className="text-lg font-semibold mb-2 hover:text-[#3498db] transition-colors">{item.title}</h3>
