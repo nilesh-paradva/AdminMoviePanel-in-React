@@ -74,7 +74,9 @@ export const SignUpThunk = (data) => async dispatch => {
 
         if (error.code === "auth/email-already-in-use") {
             errorMessage = "The email address is already in use by another account.";
-        } else if (error.code === "auth/weak-password") {
+        } else if (error.code === "auth/invalid-email") {
+            errorMessage = "Please enter a valid email address.";
+        }else if (error.code === "auth/weak-password") {
             errorMessage = "The password should be at least 6 characters.";
         } else if (error.code === "auth/missing-email") {
             errorMessage = "Please enter your email.";
