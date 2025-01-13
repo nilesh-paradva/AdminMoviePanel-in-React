@@ -107,7 +107,7 @@ export const SignInThunk = (data) => async dispatch => {
         let errorMessage = "An error occurred. Please try again.";
 
         if (error.code === "auth/invalid-credential") {
-            errorMessage = "No user found with this email.";
+            errorMessage = "No user found with this email and password please sign up.";
         } else if (error.code === "auth/invalid-email") {
             errorMessage = "Please enter your email.";
         } else if (error.code === "auth/missing-password") {

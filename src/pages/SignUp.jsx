@@ -51,7 +51,7 @@ const SignUp = () => {
                         <Col lg={5}>
                             <div className="w-full p-8 bg-[#131720] shadow-md rounded-lg border-2 border-[#151f2f]">
                                 <div className="text-center mb-6">
-                                    <h2 className="text-3xl font-bold text-white">Pnb</h2>
+                                    <h2 className="text-3xl font-bold text-white">Flix<span className="text-[14px] text-[#384e73] ms-1">TV</span></h2>
                                 </div>
                                 <form onSubmit={handleSubmit}>
                                     <div className="mb-4">
