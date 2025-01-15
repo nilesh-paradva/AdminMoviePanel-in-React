@@ -108,11 +108,13 @@ export const SignInThunk = (data) => async dispatch => {
 
         if (error.code === "auth/invalid-credential") {
             errorMessage = "No user found with this email and password please sign up.";
-        } else if (error.code === "auth/invalid-email") {
+        }else if (error.code === "auth/too-many-requests") {
+            errorMessage = "Too many requests detected. Please wait a moment and after try again";
+        }else if (error.code === "auth/invalid-email") {
             errorMessage = "Please enter your email.";
-        } else if (error.code === "auth/missing-password") {
+        }else if (error.code === "auth/missing-password") {
             errorMessage = "Please enter your password.";
-        } else {
+        }else {
             errorMessage = `Error: ${error.message}`;
         }
 
